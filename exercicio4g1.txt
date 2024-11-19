@@ -4,26 +4,34 @@ public class PercentagemPositivos {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Quantos números você deseja inserir? ");
-        int N = scanner.nextInt();
-
-        if (N <= 0) {
-            System.out.println("O número de entradas deve ser maior que zero.");
-            return;
-        }
+        int N;
+        do {
+            System.out.print("Quantos números você deseja inserir (deve ser um número positivo)? ");
+            N = scanner.nextInt();
+            if (N <= 0) {
+                System.out.println("Por favor, insira um número maior que zero.");
+            }
+        } while (N <= 0);
 
         int countPositivos = 0;
+        int soma = 0; // Para armazenar a soma dos números
+
         System.out.println("Digite " + N + " números inteiros:");
 
         for (int i = 0; i < N; i++) {
             int numero = scanner.nextInt();
+            soma += numero; // Adiciona o número à soma
             if (numero > 0) {
                 countPositivos++;
             }
         }
 
         double percentagem = (countPositivos / (double) N) * 100;
+        double media = soma / (double) N; // Calcula a média dos números lidos
+
         System.out.printf("Percentagem de números positivos: %.2f%%%n", percentagem);
+        System.out.printf("Soma dos números: %d%n", soma);
+        System.out.printf("Média dos números: %.2f%n", media);
 
         scanner.close();
     }
