@@ -14,24 +14,33 @@ public class PercentagemPositivos {
         } while (N <= 0);
 
         int countPositivos = 0;
-        int soma = 0; // Para armazenar a soma dos números
+        int soma = 0; // Para armazenar a soma de todos os números
+        int somaNegativos = 0; // Para armazenar a soma dos números negativos
+        int countNegativos = 0; // Para contar os números negativos
 
         System.out.println("Digite " + N + " números inteiros:");
 
         for (int i = 0; i < N; i++) {
             int numero = scanner.nextInt();
-            soma += numero; // Adiciona o número à soma
+            soma += numero; // Soma de todos os números
+
             if (numero > 0) {
                 countPositivos++;
+            } else if (numero < 0) {
+                somaNegativos += numero; // Soma apenas dos números negativos
+                countNegativos++;
             }
         }
 
         double percentagem = (countPositivos / (double) N) * 100;
-        double media = soma / (double) N; // Calcula a média dos números lidos
+        double media = soma / (double) N; // Média de todos os números
+        double mediaNegativos = countNegativos > 0 ? somaNegativos / (double) countNegativos : 0; // Média dos negativos
 
         System.out.printf("Percentagem de números positivos: %.2f%%%n", percentagem);
         System.out.printf("Soma dos números: %d%n", soma);
         System.out.printf("Média dos números: %.2f%n", media);
+        System.out.printf("Soma dos números negativos: %d%n", somaNegativos);
+        System.out.printf("Média dos números negativos: %.2f%n", mediaNegativos);
 
         scanner.close();
     }
